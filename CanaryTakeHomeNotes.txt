@@ -1,0 +1,76 @@
+CanaryNotes
+------------
+Questions:
+Is it okay to assume that the columns in the csv files will always be in the same order?
+
+What parts of estimated and measured emissions should be considered to be unique? If a user attempts to upload
+the same data twice, we wouldn't want duplciates in the system. For estimates, my guess would be every column 
+except for MethaneInKg (Latitude,Longitude,EquipmentGroupName,Start). For measurements, I would expect to
+be able to reduce that to EquipmentId, Start (assuming that it EquipmentId really is a unique id in the system).
+
+There are emissions whose latitude/longitude don't exactly match any of the sites. Should I look for the closest site to determine which they should be associated with?
+Is there a certain proximity that should be considered close enough? Or should I get rid of any data that isn't exactly at the site?
+
+In the unlikely case that a start and end time straddle a month or even year boundary, how should they be counted? Towards the year and month of the start date?
+
+
+DB Tables
+
+CREATE TABLE emission_site (
+	site_id SERIAL primary key,
+	name character(255) unique,
+	latitude double precision,
+	longitude double precision
+);
+
+CREATE TABLE equipment_group (
+	equipment_group_id SERIAL primary key,
+	name character(255) unique
+);
+
+CREATE TABLE equipment (
+	equipment_group_id integer,
+	equipment_id UUID,
+	primary key (equipment_group_id, equipment_id)
+)
+
+CREATE TABLE measured_emissions (
+	id bigserial primary key,
+	site_id integer,
+	equipment_group_id integer,
+	equipment_id uuid,
+	methane_in_kg double precision,
+	measurement_start_time timestamp,
+	measurement_end_time timestamp
+)
+
+CREATE TABLE estimated_emissions (
+	id bigserial primary key,
+	site_id integer,
+	equipment_group_id integer,
+	methane_in_kg double precision,
+	estimate_start_time timestamp,
+	estimate_end_time timestamp
+)
+
+INSERT INTO emission_site
+(name, latitude, longitude)
+values ('Blackstone Pad', 39.91413786,-80.4778364),
+('Cedar Ridge Pad',40.08534879,-80.64617783),
+('Eagle''s Nest Pad',33.14457495,-97.44019826),
+('Pine Valley Pad',32.75879278,-97.26486679),
+('Red Rock Pad',31.91391573,-93.29114089),
+('Ironwood Pad',31.77769914,-93.43597152)
+
+insert into equipment_group
+(name)
+values
+('Dehydrators'),
+('GPUs'),
+('Meter Runs'),
+('Produced Water Tanks'),
+('Sand Traps'),
+('Slug Catchers'),
+('Slop Tanks'),
+('Wells')
+
