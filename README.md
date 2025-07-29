@@ -25,6 +25,13 @@ To set up and run the project, follow these steps:
 
 ```dotnet ef database update -- "Host=localhost;Port=5433;Database=project_canary_takehome;Username=project_canary_takehome;Password=giveemissionsthebird"```
 
+3. Set the ProjectCanary.Api project as the startup project and run it with the "http" profile.
+
+4. Ingest data. I used Postman to post each file to the appropriate endpoint
+
+5. Navigate to the frontend directory and follow the readme (highlights: Create a .env.local in the main folder with a single line "NEXT_PUBLIC_API_URL=http://localhost:5134
+". run 'npm install' and 'npm run dev')
+
 ## Deliverables
 
 Submit a zip of your completed backend and frontend solutions. Keep your implementation clean and simple and contact us if you have questions. Good luck!
