@@ -21,9 +21,9 @@ To set up and run the project, follow these steps:
 
 2. Apply the database migrations to set up the schema. Run the following command:
 
-```ef migrations add InitialCreate -- "Host=localhost;Port=5433;Database=project_canary_takehome;Username=project_canary_takehome;Password=giveemissionsthebird"```
+```dotnet ef migrations add InitialCreate -- "Host=localhost;Port=5433;Database=project_canary_takehome;Username=project_canary_takehome;Password=giveemissionsthebird"```
 
-```ef database update -- "Host=localhost;Port=5433;Database=project_canary_takehome;Username=project_canary_takehome;Password=giveemissionsthebird"```
+```dotnet ef database update -- "Host=localhost;Port=5433;Database=project_canary_takehome;Username=project_canary_takehome;Password=giveemissionsthebird"```
 
 ## Deliverables
 
