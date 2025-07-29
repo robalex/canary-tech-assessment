@@ -42,32 +42,16 @@ namespace ProjectCanary.BusinessLogic.Services.Implementations
 
             var equipmentGroup = equipmentGroupsByName[equipmentGroupName];
             EmissionSite? currentSite = EmissionSiteRetriever.GetEmissionSiteForCoordinates(siteNameToCoordinates, siteNameToSite, latitude, longitude);
-
-            //var totalDays = (endTime - startTime).TotalDays;
-            //var methanePerDay = methaneInKg / totalDays;
-            //var daysPerMonth = DaysPerMonthGenerator.GetDaysPerMonth(startTime, endTime);
-
-            //var estimatedEmissions = new List<EstimatedEmission>();
-            //for (var date = startTime; date < endTime; date = date.AddDays(1)) {
-                //var estimateStart = new DateTime(startTime.Year, month, 1);
-                //var estimateEnd = estimateStart.AddMonths(1);
-                //var currentMethane = methaneInKg * (daysPerMonth[month] / totalDays);
-                return new EstimatedEmission()
-                {
-                    EmissionSite = currentSite,
-                    SiteId = currentSite.SiteId,
-                    EstimateDate = startTime,
-                    MethaneInKg = methaneInKg,
-                    EquipmentGroup = equipmentGroup,
-                    EquipmentGroupId = equipmentGroup.EquipmentGroupId
-                };
-
-                //estimatedEmissions.Add(
-                //    emission
-                //);
-            //}
-
-            //return estimatedEmissions;
+           
+            return new EstimatedEmission()
+            {
+                EmissionSite = currentSite,
+                SiteId = currentSite.SiteId,
+                EstimateDate = startTime,
+                MethaneInKg = methaneInKg,
+                EquipmentGroup = equipmentGroup,
+                EquipmentGroupId = equipmentGroup.EquipmentGroupId
+            };
         }
     }
 }

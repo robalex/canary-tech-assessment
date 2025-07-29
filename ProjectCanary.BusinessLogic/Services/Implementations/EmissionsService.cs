@@ -129,39 +129,4 @@ public class EmissionsService(
 
         return results;
     }
-
-    public async Task<IEnumerable<EquipmentGroup>> GetEquipmentGroupsAsync()
-    {
-        // Use ToListAsync to execute the query and return a list asynchronously
-        var groups = await _db.EquipmentGroups.Distinct().ToListAsync();
-        return groups.OrderBy(x => x.Name, StringComparer.OrdinalIgnoreCase);
-    }
-
-    public async Task<IEnumerable<EmissionSite>> GetEmissionSitesAsync()
-    {
-        var sites = await _db.EmissionSites.Distinct().ToListAsync();
-        return sites.OrderBy(x => x.Name, StringComparer.OrdinalIgnoreCase);
-    }
-
-    public async Task<IEnumerable<YearAndMonth>> GetYearsAndMonthsAsync()
-    {
-        var estimatedYearsAndMonths = await _db.EstimatedEmissions
-            .Select(e => new YearAndMonth
-            {
-                Year = e.EstimateDate.Year,
-                Month = e.EstimateDate.Month
-            }).Distinct()
-            .ToListAsync();
-
-        var measuredYearsAndMonths = await _db.MeasuredEmissions
-            .Select(e => new YearAndMonth
-            {
-                Year = e.MeasurementDate.Year,
-                Month = e.MeasurementDate.Month
-            }).Distinct()
-            .ToListAsync();
-
-        var combinedYearsAndMonths = estimatedYearsAndMonths.Concat(measuredYearsAndMonths).Distinct();
-        return combinedYearsAndMonths.OrderBy(y => y.Year).ThenBy(m => m.Month);
-    }
 }

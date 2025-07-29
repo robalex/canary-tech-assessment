@@ -2,7 +2,7 @@
 {
     public class CombinedEmissionResults
     {
-        public string Label { get; set; }
+        public required string Label { get; set; }
 
         public double MeasuredResult { get; set; }
 

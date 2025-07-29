@@ -48,7 +48,6 @@ namespace ProjectCanary.BusinessLogic.Services.Implementations
 
             var totalDays = (endTime - startTime).TotalDays;
             var methanePerDay = methaneInKg / totalDays;
-            //var daysPerMonth = DaysPerMonthGenerator.GetDaysPerMonth(startTime, endTime);
 
             var measuredEmissions = new List<MeasuredEmission>();
             for (var date = startTime; date < endTime; date = date.AddDays(1)) {

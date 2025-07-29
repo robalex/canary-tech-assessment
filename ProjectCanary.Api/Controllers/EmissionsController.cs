@@ -47,26 +47,5 @@ namespace ProjectCanary.Api.Controllers
 
             return Ok(result);
         }
-
-        [HttpGet("get-equipment-groups")]
-        public async Task<IActionResult> GetEquipmentGroups()
-        {
-            var equipmentGroups = await _emissionsService.GetEquipmentGroupsAsync();
-            return Ok(equipmentGroups);
-        }
-
-        [HttpGet("get-emission-sites")]
-        public async Task<IActionResult> GetEmissionSites()
-        {
-            var emissionSites = await _emissionsService.GetEmissionSitesAsync();
-            return Ok(emissionSites);
-        }
-
-        [HttpGet("get-years-and-months")]
-        public async Task<IActionResult> GetYearsAndMonths()
-        {
-            var yearsAndMonths = await _emissionsService.GetYearsAndMonthsAsync();
-            return Ok(yearsAndMonths);
-        }
     }
 }

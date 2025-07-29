@@ -1,5 +1,4 @@
 ﻿using ProjectCanary.BusinessLogic.Models;
-using ProjectCanary.Data.Models;
 
 namespace ProjectCanary.BusinessLogic.Services;
 
@@ -22,10 +21,4 @@ public interface IEmissionsService
     /// </summary>
     /// <returns>A collection of structured data ready for chart representation.</returns>
     Task<IEnumerable<CombinedEmissionResults>> GetEmissionsChartDataAsync(EmissionComparisonGroupBy groupBy);
-
-    Task<IEnumerable<EquipmentGroup>> GetEquipmentGroupsAsync();
-
-    Task<IEnumerable<EmissionSite>> GetEmissionSitesAsync();
-
-    Task<IEnumerable<YearAndMonth>> GetYearsAndMonthsAsync();
 }
