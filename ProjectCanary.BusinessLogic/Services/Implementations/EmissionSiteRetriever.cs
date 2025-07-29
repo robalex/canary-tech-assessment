@@ -19,6 +19,7 @@ namespace ProjectCanary.BusinessLogic.Services.Implementations
                     emissionSiteByName.Add(site.Name, site);
                 }
             }
+
             return emissionSiteByName;
         }
 

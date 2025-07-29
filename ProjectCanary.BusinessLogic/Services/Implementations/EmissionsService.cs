@@ -8,15 +8,15 @@ namespace ProjectCanary.BusinessLogic.Services.Implementations;
 
 public class EmissionsService(
     ProjectCanaryDbContext db,
-    IEstimatedEmissionFileParser estimatedEmissionFileParser,
-    IMeasuredEmissionFileParser measuredEmissionFileParser
+    IEstimatedEmissionLineParser estimatedEmissionLineParser,
+    IMeasuredEmissionLineParser measuredEmissionLineParser
     ) : IEmissionsService
 {
     private readonly ProjectCanaryDbContext _db = db;
 
-    private readonly IEstimatedEmissionFileParser _estimatedEmissionFileParser = estimatedEmissionFileParser;
+    private readonly IEstimatedEmissionLineParser _estimatedEmissionLineParser = estimatedEmissionLineParser;
 
-    private readonly IMeasuredEmissionFileParser _measuredEmissionFileParser = measuredEmissionFileParser;
+    private readonly IMeasuredEmissionLineParser _measuredEmissionLineParser = measuredEmissionLineParser;
 
     public async Task IngestMeasuredEmissionsAsync(Stream inputStream)
     {
@@ -28,19 +28,14 @@ public class EmissionsService(
 
         var measuredEmissions = new List<MeasuredEmission>();
 
-        try {
-            while ((line = await sr.ReadLineAsync()) != null) {
-                var currentMeasuredEmissions = _measuredEmissionFileParser.ParseEmissions(line);
-                measuredEmissions.AddRange(currentMeasuredEmissions);
+        while ((line = await sr.ReadLineAsync()) != null) {
+            var currentMeasuredEmissions = _measuredEmissionLineParser.ParseEmissions(line);
+            measuredEmissions.AddRange(currentMeasuredEmissions);
 
-                if (measuredEmissions.Count >= 1000) {
-                    await _db.BulkInsertOrUpdateAsync(measuredEmissions);
-                    measuredEmissions.Clear();
-                }
+            if (measuredEmissions.Count >= 1000) {
+                await _db.BulkInsertOrUpdateAsync(measuredEmissions);
+                measuredEmissions.Clear();
             }
-        }
-        catch (Exception e) {
-            var rob = 3;
         }
 
         if (measuredEmissions.Count > 0) {
@@ -59,7 +54,7 @@ public class EmissionsService(
         var estimatedEmissions = new List<EstimatedEmission>();
 
         while ((line = await sr.ReadLineAsync()) != null) {
-            var currentEstimatedEmissions = _estimatedEmissionFileParser.ParseEmissions(line);
+            var currentEstimatedEmissions = _estimatedEmissionLineParser.ParseEmissions(line);
             estimatedEmissions.Add(currentEstimatedEmissions);
 
             if (estimatedEmissions.Count >= 1000) {

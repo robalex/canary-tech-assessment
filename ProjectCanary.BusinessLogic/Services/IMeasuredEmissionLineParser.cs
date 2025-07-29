@@ -2,7 +2,7 @@
 
 namespace ProjectCanary.BusinessLogic.Services
 {
-    public interface IMeasuredEmissionFileParser
+    public interface IMeasuredEmissionLineParser
     {
         IEnumerable<MeasuredEmission> ParseEmissions(string commaSeparatedEmissions);
     }
