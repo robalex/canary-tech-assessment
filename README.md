@@ -39,7 +39,9 @@ I manually created seed data for an emission_sites and an equipment_groups table
 The backend is set up to allow cors specifically only in dev mode and only for requests from localhost:3000. So The frontend must run on that port.
 
 The frontend requires a .env.local file to point it to the dotnet backend. The backend is currently configured to port 5134 when using the http profile, so the contents of this file should be
+
 NEXT_PUBLIC_API_URL=http://localhost:5134
+
 This would change if you are using iisExpress or another profile.
 
 The frontend sorts by month by default.
