@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ProjectCanary.Data;
@@ -11,9 +12,11 @@ using ProjectCanary.Data;
 namespace ProjectCanary.Data.Migrations
 {
     [DbContext(typeof(ProjectCanaryDbContext))]
-    partial class ProjectCanaryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250728220227_SaveSingleDate")]
+    partial class SaveSingleDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -194,9 +197,8 @@ namespace ProjectCanary.Data.Migrations
                     b.HasIndex("EquipmentGroupId")
                         .HasDatabaseName("ix_estimated_emissions_equipment_group_id");
 
-                    b.HasIndex("SiteId", "EquipmentGroupId", "EstimateDate")
-                        .IsUnique()
-                        .HasDatabaseName("ix_estimated_emissions_site_id_equipment_group_id_estimate_date");
+                    b.HasIndex("SiteId")
+                        .HasDatabaseName("ix_estimated_emissions_site_id");
 
                     b.ToTable("estimated_emissions", (string)null);
                 });
@@ -238,10 +240,6 @@ namespace ProjectCanary.Data.Migrations
 
                     b.HasIndex("SiteId")
                         .HasDatabaseName("ix_measured_emissions_site_id");
-
-                    b.HasIndex("EquipmentId", "MeasurementDate")
-                        .IsUnique()
-                        .HasDatabaseName("ix_measured_emissions_equipment_id_measurement_date");
 
                     b.ToTable("measured_emissions", (string)null);
                 });

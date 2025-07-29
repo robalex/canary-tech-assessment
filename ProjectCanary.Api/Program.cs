@@ -8,6 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("PostgresConnection");
 
 builder.Services.AddScoped<IEmissionsService, EmissionsService>();
+builder.Services.AddScoped<IEstimatedEmissionFileParser, EstimatedEmissionFileParser>();
+builder.Services.AddScoped<IMeasuredEmissionFileParser, MeasuredEmissionFileParser>();
+builder.Services.AddScoped<IEmissionSiteRetriever, EmissionSiteRetriever>();
+builder.Services.AddScoped<ISiteCoordinateRetriever, SiteCoordinateRetriever>();
+builder.Services.AddScoped<IEquipmentGroupRetriever, EquipmentGroupRetriever>();
 
 builder.Services.AddCors(options =>
 {

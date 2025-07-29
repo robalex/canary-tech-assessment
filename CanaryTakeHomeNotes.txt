@@ -8,13 +8,22 @@ the same data twice, we wouldn't want duplciates in the system. For estimates, m
 except for MethaneInKg (Latitude,Longitude,EquipmentGroupName,Start). For measurements, I would expect to
 be able to reduce that to EquipmentId, Start (assuming that it EquipmentId really is a unique id in the system).
 
+also add an import id so that you can delete everything from a specific import if you need to.
+
 There are emissions whose latitude/longitude don't exactly match any of the sites. Should I look for the closest site to determine which they should be associated with?
 Is there a certain proximity that should be considered close enough? Or should I get rid of any data that isn't exactly at the site?
 
 In the unlikely case that a start and end time straddle a month or even year boundary, how should they be counted? Towards the year and month of the start date?
 
+---------------------------
+More questions and thoughts
+---------------------------
+I am storing the start/end times as utc in postgres. Hopefully I can treat these as local times.
 
+
+---------
 DB Tables
+---------
 
 CREATE TABLE emission_site (
 	site_id SERIAL primary key,

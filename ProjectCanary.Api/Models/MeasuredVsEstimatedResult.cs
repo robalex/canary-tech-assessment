@@ -20,8 +20,8 @@
          */
         public required string Label { get; set; }
 
-        public float MeasuredResult { get; set; }
+        public double MeasuredResult { get; set; }
 
-        public float EstimatedResult { get; set; }
+        public double EstimatedResult { get; set; }
     }
 }

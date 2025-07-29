@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjectCanary.Api.Models;
+using ProjectCanary.BusinessLogic.Models;
 using ProjectCanary.BusinessLogic.Services;
+using System.Globalization;
 
 namespace ProjectCanary.Api.Controllers
 {
@@ -33,31 +35,16 @@ namespace ProjectCanary.Api.Controllers
         }
 
         [HttpGet("measured-vs-estimated")]
-        public async Task<IActionResult> GetMeasuredVsEstimatedChartData(int? siteId, int? year, int? month, int? equipmentGroupId)
+        public async Task<IActionResult> GetMeasuredVsEstimatedChartData(EmissionComparisonGroupBy groupBy)
         {
-            var result = new List<MeasuredVsEstimatedResult>()
+            var chartData = await _emissionsService.GetEmissionsChartDataAsync(groupBy);
+            var result = chartData.Select(data => new MeasuredVsEstimatedResult
             {
-                new MeasuredVsEstimatedResult
-                {
-                    Label = "January",
-                    MeasuredResult = 110,
-                    EstimatedResult = 100
-                },
-                new MeasuredVsEstimatedResult
-                {
-                    Label = "February",
-                    MeasuredResult = 220,
-                    EstimatedResult = 200
-                },
-                new MeasuredVsEstimatedResult
-                {
-                    Label = "March",
-                    MeasuredResult = 330,
-                    EstimatedResult = 300
-                }
-            };
+                Label = groupBy == EmissionComparisonGroupBy.YearAndMonth ? CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(int.Parse(data.Label)) : data.Label,
+                MeasuredResult = data.MeasuredResult,
+                EstimatedResult = data.EstimatedResult
+            }).ToList();
 
-            //var result = await _emissionsService.GetMeasuredVsEstimatedChartDataAsync();
             return Ok(result);
         }
 

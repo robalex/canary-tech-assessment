@@ -2,7 +2,7 @@
 {
     public class EquipmentGroup
     {
-        public string GroupName { get; set; }
+        public required string GroupName { get; set; }
 
         public Guid GroupId { get; set; }
     }

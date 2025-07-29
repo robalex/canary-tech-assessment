@@ -21,7 +21,7 @@ public interface IEmissionsService
     /// Retrieves emissions data grouped by Site, Month, and Equipment Group for charting.
     /// </summary>
     /// <returns>A collection of structured data ready for chart representation.</returns>
-    Task<IEnumerable<object>> GetEmissionsChartDataAsync(EmissionComparisonGroupBy? groupBy);
+    Task<IEnumerable<CombinedEmissionResults>> GetEmissionsChartDataAsync(EmissionComparisonGroupBy groupBy);
 
     Task<IEnumerable<EquipmentGroup>> GetEquipmentGroupsAsync();
 

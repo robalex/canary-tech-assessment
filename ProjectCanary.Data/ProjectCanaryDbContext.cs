@@ -20,9 +20,6 @@ namespace ProjectCanary.Data
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Equipment>()
-            //    .HasKey(e => new { e.EquipmentGroupId, e.EquipmentId });
-
             modelBuilder.Entity<MeasuredEmission>()
                 .HasOne(e => e.EmissionSite)
                 .WithMany()
@@ -42,6 +39,14 @@ namespace ProjectCanary.Data
                 .HasOne(e => e.EquipmentGroup)
                 .WithMany()
                 .HasForeignKey(e => e.EquipmentGroupId);
+
+            modelBuilder.Entity<MeasuredEmission>()
+                .HasIndex(me => new { me.EquipmentId, me.MeasurementDate })
+                .IsUnique();
+
+            modelBuilder.Entity<EstimatedEmission>()
+                .HasIndex(ee => new { ee.SiteId, ee.EquipmentGroupId, ee.EstimateDate })
+                .IsUnique();
 
             modelBuilder.Entity<EmissionSite>().HasData(
                 new EmissionSite { SiteId = 1, Name = "Blackstone Pad", Latitude = 39.91413786, Longitude = -80.4778364 },

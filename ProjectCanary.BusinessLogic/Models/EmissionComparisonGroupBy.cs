@@ -1,4 +1,4 @@
-﻿namespace ProjectCanary.Data.Models
+﻿namespace ProjectCanary.BusinessLogic.Models
 {
     public enum EmissionComparisonGroupBy
     {
