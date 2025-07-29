@@ -7,14 +7,19 @@ namespace ProjectCanary.Data.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("id")]
         public long Id { get; set; }
 
+        [Column("site_id")]
         public int SiteId { get; set; }
 
+        [Column("equipment_group_id")]
         public int EquipmentGroupId { get; set; }
 
+        [Column("equipment_id")]
         public double MethaneInKg { get; set; }
 
+        [Column("estimate_date")]
         public DateTime EstimateDate { get; set; }
 
         public required EmissionSite EmissionSite { get; set; }

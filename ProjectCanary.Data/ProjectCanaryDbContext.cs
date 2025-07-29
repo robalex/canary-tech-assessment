@@ -21,6 +21,11 @@ namespace ProjectCanary.Data
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<EmissionSite>().ToTable("emission_sites");
+            modelBuilder.Entity<EquipmentGroup>().ToTable("equipment_groups");
+            modelBuilder.Entity<MeasuredEmission>().ToTable("measured_emissions");
+            modelBuilder.Entity<EstimatedEmission>().ToTable("estimated_emissions");
+
             modelBuilder.Entity<MeasuredEmission>()
                 .HasOne(e => e.EmissionSite)
                 .WithMany()

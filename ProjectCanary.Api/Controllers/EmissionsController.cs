@@ -18,7 +18,7 @@ namespace ProjectCanary.Api.Controllers
             try {
                 using var inputStream = file.OpenReadStream();
                 await _emissionsService.IngestMeasuredEmissionsAsync(inputStream);
-            } catch {
+            } catch(Exception e) {
                 return StatusCode(500, "Failed to ingest measured emissions");
             }
 

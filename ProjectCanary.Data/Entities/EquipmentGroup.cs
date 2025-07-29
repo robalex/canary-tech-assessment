@@ -7,9 +7,11 @@ namespace ProjectCanary.Data.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("equipment_group_id")]
         public int EquipmentGroupId { get; set; }
 
         [MaxLength(255)]
+        [Column("name")]
         public required string Name { get; set; }
     }
 }
