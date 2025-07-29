@@ -1,4 +1,4 @@
-﻿using ProjectCanary.Data.Models;
+﻿using ProjectCanary.Data.Entities;
 
 namespace ProjectCanary.BusinessLogic.Services.Implementations
 {
@@ -8,12 +8,6 @@ namespace ProjectCanary.BusinessLogic.Services.Implementations
         IEmissionSiteRetriever emissionSiteRetriever
         ) : IEstimatedEmissionFileParser
     {
-        private IEquipmentGroupRetriever _equipmentGroupRetriever = equipmentGroupRetriever;
-
-        private ISiteCoordinateRetriever _siteCoordinateRetriever = siteCoordinateRetriever;
-
-        private IEmissionSiteRetriever _emissionSiteRetriever = emissionSiteRetriever;
-
         private const int LatitudeColumnIndex = 0;
 
         private const int LongitudeColumnIndex = 1;
@@ -25,6 +19,12 @@ namespace ProjectCanary.BusinessLogic.Services.Implementations
         private const int EndTimeColumnIndex = 4;
 
         private const int MethaneInKgColumnIndex = 5;
+
+        private readonly IEquipmentGroupRetriever _equipmentGroupRetriever = equipmentGroupRetriever;
+
+        private readonly ISiteCoordinateRetriever _siteCoordinateRetriever = siteCoordinateRetriever;
+
+        private readonly IEmissionSiteRetriever _emissionSiteRetriever = emissionSiteRetriever;
 
         public EstimatedEmission ParseEmissions(string commaSeparatedEmissions)
         {
@@ -41,7 +41,7 @@ namespace ProjectCanary.BusinessLogic.Services.Implementations
             var methaneInKg = double.Parse(columns[MethaneInKgColumnIndex]);
 
             var equipmentGroup = equipmentGroupsByName[equipmentGroupName];
-            EmissionSite? currentSite = EmissionSiteRetriever.GetEmissionSiteForCoordinates(siteNameToCoordinates, siteNameToSite, latitude, longitude);
+            EmissionSite? currentSite = EmissionSiteRetriever.GetClosestEmissionSiteForCoordinates(siteNameToCoordinates, siteNameToSite, latitude, longitude);
            
             return new EstimatedEmission()
             {

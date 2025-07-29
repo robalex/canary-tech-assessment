@@ -1,13 +1,9 @@
-﻿
-using GeoCoordinatePortable;
-using ProjectCanary.Data.Models;
+﻿using GeoCoordinatePortable;
 
 namespace ProjectCanary.BusinessLogic.Services
 {
     public interface ISiteCoordinateRetriever
     {
         Dictionary<string, GeoCoordinate> GetEmissionSiteNameToCoordinates();
-        
-        Dictionary<double, Dictionary<double, EmissionSite>> GetEmissionSitesByCoordinates();
     }
 }

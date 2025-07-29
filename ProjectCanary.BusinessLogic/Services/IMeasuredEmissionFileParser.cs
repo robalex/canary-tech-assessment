@@ -1,4 +1,4 @@
-﻿using ProjectCanary.Data.Models;
+﻿using ProjectCanary.Data.Entities;
 
 namespace ProjectCanary.BusinessLogic.Services
 {

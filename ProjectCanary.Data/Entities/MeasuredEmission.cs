@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ProjectCanary.Data.Models
+namespace ProjectCanary.Data.Entities
 {
-    public class EstimatedEmission
+    public class MeasuredEmission
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -13,9 +13,11 @@ namespace ProjectCanary.Data.Models
 
         public int EquipmentGroupId { get; set; }
 
+        public Guid EquipmentId { get; set; }
+
         public double MethaneInKg { get; set; }
 
-        public DateTime EstimateDate { get; set; }
+        public DateTime MeasurementDate { get; set; }
 
         public required EmissionSite EmissionSite { get; set; }
 

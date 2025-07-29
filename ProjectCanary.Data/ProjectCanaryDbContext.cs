@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProjectCanary.Data.Models;
-//using ProjectCanary.Data.Entities;
+using ProjectCanary.Data.Entities;
 
 namespace ProjectCanary.Data
 {
@@ -8,9 +7,11 @@ namespace ProjectCanary.Data
     {
 
         public DbSet<EmissionSite> EmissionSites { get; set; }
+
         public DbSet<EquipmentGroup> EquipmentGroups { get; set; }
-        //internal DbSet<Equipment> Equipment { get; set; }
+        
         public DbSet<MeasuredEmission> MeasuredEmissions { get; set; }
+
         public DbSet<EstimatedEmission> EstimatedEmissions { get; set; }
 
         public ProjectCanaryDbContext(DbContextOptions<ProjectCanaryDbContext> options) : base(options)

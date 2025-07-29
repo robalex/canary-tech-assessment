@@ -1,5 +1,5 @@
 ﻿using ProjectCanary.Data;
-using ProjectCanary.Data.Models;
+using ProjectCanary.Data.Entities;
 using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using ProjectCanary.BusinessLogic.Models;
