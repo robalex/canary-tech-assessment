@@ -30,7 +30,7 @@ To set up and run the project, follow these steps:
 Submit a zip of your completed backend and frontend solutions. Keep your implementation clean and simple and contact us if you have questions. Good luck!
 
 ## Rob's Notes
-The entity framework InitialCreate call above threw an error. I updated the call so that it will succeed.
+The entity framework InitialCreate call above threw an error. I updated the call so that it will succeed when called from the ProjectCanary.Data directory.
 
 docker-compose.yml was updated to set up pgadmin4 as well. This can be accessed from localhost:5050, but can be removed if not wanted. I needed a simple postgresql management interface.
 
