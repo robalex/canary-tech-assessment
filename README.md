@@ -25,7 +25,7 @@ To set up and run the project, follow these steps:
 
 ```dotnet ef database update -- "Host=localhost;Port=5433;Database=project_canary_takehome;Username=project_canary_takehome;Password=giveemissionsthebird"```
 
-3. Set the ProjectCanary.Api project as the startup project and run it with the "http" profile.
+3. Set the ProjectCanary.Api project as the startup project and run it with the "http" profile in debug mode. I allowed CORS only in debug mode, and did not want to bother with certificates because this is a take home project.
 
 4. Ingest data. I used Postman to post each file to the appropriate endpoint
 

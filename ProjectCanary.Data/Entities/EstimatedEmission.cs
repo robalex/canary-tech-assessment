@@ -16,7 +16,7 @@ namespace ProjectCanary.Data.Entities
         [Column("equipment_group_id")]
         public int EquipmentGroupId { get; set; }
 
-        [Column("equipment_id")]
+        [Column("methane_in_kg")]
         public double MethaneInKg { get; set; }
 
         [Column("estimate_date")]
