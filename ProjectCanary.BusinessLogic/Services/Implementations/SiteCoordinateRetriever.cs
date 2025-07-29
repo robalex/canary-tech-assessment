@@ -1,4 +1,5 @@
 ﻿using GeoCoordinatePortable;
+using ProjectCanary.BusinessLogic.Services.Interfaces;
 using ProjectCanary.Data;
 
 namespace ProjectCanary.BusinessLogic.Services.Implementations
@@ -18,6 +19,7 @@ namespace ProjectCanary.BusinessLogic.Services.Implementations
                     emissionSiteNameToCoordinates.Add(site.Name, new GeoCoordinate(site.Latitude, site.Longitude));
                 }
             }
+
             return emissionSiteNameToCoordinates;
         }
     }

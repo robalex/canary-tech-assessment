@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using ProjectCanary.BusinessLogic.Services;
 using ProjectCanary.BusinessLogic.Services.Implementations;
+using ProjectCanary.BusinessLogic.Services.Interfaces;
 using ProjectCanary.Data;
 
 var builder = WebApplication.CreateBuilder(args);

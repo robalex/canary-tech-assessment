@@ -1,6 +1,6 @@
 ﻿using GeoCoordinatePortable;
 
-namespace ProjectCanary.BusinessLogic.Services
+namespace ProjectCanary.BusinessLogic.Services.Interfaces
 {
     public interface ISiteCoordinateRetriever
     {

@@ -1,4 +1,5 @@
-﻿using ProjectCanary.Data;
+﻿using ProjectCanary.BusinessLogic.Services.Interfaces;
+using ProjectCanary.Data;
 using ProjectCanary.Data.Entities;
 
 namespace ProjectCanary.BusinessLogic.Services.Implementations
@@ -18,6 +19,7 @@ namespace ProjectCanary.BusinessLogic.Services.Implementations
                     equipmentGroupByName.Add(group.Name, group);
                 }
             }
+
             return equipmentGroupByName;
         }
     }

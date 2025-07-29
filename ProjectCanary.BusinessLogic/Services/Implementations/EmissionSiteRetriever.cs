@@ -1,4 +1,5 @@
 ﻿using GeoCoordinatePortable;
+using ProjectCanary.BusinessLogic.Services.Interfaces;
 using ProjectCanary.Data;
 using ProjectCanary.Data.Entities;
 
@@ -23,7 +24,12 @@ namespace ProjectCanary.BusinessLogic.Services.Implementations
             return emissionSiteByName;
         }
 
-        public static EmissionSite GetClosestEmissionSiteForCoordinates(Dictionary<string, GeoCoordinate> siteNameToCoordinates, Dictionary<string, EmissionSite> siteNameToSite, double latitude, double longitude)
+        public static EmissionSite GetClosestEmissionSiteForCoordinates(
+            Dictionary<string, GeoCoordinate> siteNameToCoordinates, 
+            Dictionary<string, EmissionSite> siteNameToSite, 
+            double latitude, 
+            double longitude
+            )
         {
             var measurementCoordinates = new GeoCoordinate(latitude, longitude);
             var minDistance = double.MaxValue;

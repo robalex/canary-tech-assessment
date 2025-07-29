@@ -3,6 +3,7 @@ using ProjectCanary.Data.Entities;
 using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using ProjectCanary.BusinessLogic.Models;
+using ProjectCanary.BusinessLogic.Services.Interfaces;
 
 namespace ProjectCanary.BusinessLogic.Services.Implementations;
 

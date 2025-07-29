@@ -1,4 +1,5 @@
-﻿using ProjectCanary.Data.Entities;
+﻿using ProjectCanary.BusinessLogic.Services.Interfaces;
+using ProjectCanary.Data.Entities;
 
 namespace ProjectCanary.BusinessLogic.Services.Implementations
 {

@@ -1,6 +1,6 @@
 ﻿using ProjectCanary.Data.Entities;
 
-namespace ProjectCanary.BusinessLogic.Services
+namespace ProjectCanary.BusinessLogic.Services.Interfaces
 {
     public interface IMeasuredEmissionLineParser
     {
