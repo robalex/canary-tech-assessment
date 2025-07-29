@@ -2,12 +2,26 @@ CanaryNotes
 ------------
 Readme Notes:
 
+docker-compose.yml was updated to set up pgadmin4 as well. This can be accessed from localhost:5050, but can be removed if not wanted. I needed a simple postgresql management interface.
+
 I manually created seed data for an emission_sites and an equipment_groups table. That seed data is specified in ProjectCanaryDbContext.cs.
 
+The backend is set up to allow cors specifically only in dev mode and only for requests from localhost:3000. So The frontend must run on that port.
 
-
-The frontend requires a .env.local file to point it to the dotnet backend. The backend is currently configured to port 5134, so the contents of this file should be
+The frontend requires a .env.local file to point it to the dotnet backend. The backend is currently configured to port 5134 when using the http profile, so the contents of this file should be
 NEXT_PUBLIC_API_URL=http://localhost:5134
+This would change if you are using iisExpress or another profile.
+
+The frontend sorts by month by default.
+
+If I had more time or had to make this similar to a production app, I would do the following:
+* Add logging everywhere
+* Do something more clever than catching all exceptions in controller methods. I am currently swallowing the exception messages because you usually wouldn't want the
+  consumer of your api to see exception messages because it is ugly and also gives insight into your code. Having said that, catching all exceptions isn't terribly elegant.
+  I would definitely try to return something like a 409 when the user attempts to upload duplicate data.
+* Add more tests. 
+* GetMeasuredVsEstimatedChartData in the EmissionsController converts month int string to month name when you are ordering by month. This is gross and difficult to read. I would find a cleaner way to do this.
+* The month group by parameter is currently called YearAndMonth. In the real world, we would have results from multiple years so you would either have to display results from all months from all years that have data, or you would have to specify the year in your query. Since we only have data from 2023, this is not a problem in the take home.
 
 
 Questions:
