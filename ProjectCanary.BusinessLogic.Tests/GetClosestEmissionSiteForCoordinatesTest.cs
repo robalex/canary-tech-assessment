@@ -3,7 +3,7 @@ using ProjectCanary.Data.Entities;
 
 namespace ProjectCanary.BusinessLogic.Tests
 {
-    public class Tests
+    public class GetClosestEmissionSiteForCoordinatesTest
     {
         private List<EmissionSite> _testEmissionSites = new List<EmissionSite>()
         {

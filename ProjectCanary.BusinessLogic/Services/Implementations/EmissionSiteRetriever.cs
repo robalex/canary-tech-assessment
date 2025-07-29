@@ -11,17 +11,11 @@ namespace ProjectCanary.BusinessLogic.Services.Implementations
 
         public Dictionary<string, EmissionSite> GetEmissionSitesByName()
         {
-            var emissionSites = _db.EmissionSites.ToList();
-            Dictionary<string, EmissionSite> emissionSiteByName = new Dictionary<string, EmissionSite>();
-            foreach (var site in emissionSites) {
-                if (emissionSiteByName.ContainsKey(site.Name)) {
-                    throw new ArgumentException($"Duplicate site found with name {site.Name}.");
-                } else {
-                    emissionSiteByName.Add(site.Name, site);
-                }
-            }
-
-            return emissionSiteByName;
+            return _db.EmissionSites
+                .ToDictionary(
+                    site => site.Name,
+                    site => site,
+                    StringComparer.Ordinal);
         }
 
         public static EmissionSite GetClosestEmissionSiteForCoordinates(
@@ -33,7 +27,6 @@ namespace ProjectCanary.BusinessLogic.Services.Implementations
         {
             var measurementCoordinates = new GeoCoordinate(latitude, longitude);
             var minDistance = double.MaxValue;
-            var currentSiteName = string.Empty;
 
             EmissionSite? currentSite = null;
             foreach (var siteName in siteNameToCoordinates.Keys) {
